@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Login|Fusion Kitchen</title>
+        <link rel='stylesheet' type="text/css" href="{{url_for('static', filename='CSS/login.css')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='icon' href="{{url_for('static', filename='images/favicon.svg')}}"/>
+    </head>
+    <body>
+        <div class="boxaligner">
+            <div class='centralbox'>
+                <img src="{{url_for('static', filename='images/logo.png')}}" id="logo">
+                <form name="signup" method="POST">
+                    <label for="fname">First Name</label></br>
+                    <input class="fcommonspace" type="text" id="fname" name="fname" placeholder="First Name" minlength="1" required/></br>
+                    <label for="lname">Last Name</label></br>
+                    <input class="fcommonspace" type="text" id="lname" name="lname" placeholder="Last Name" minlength="1" required/></br>
+                    <label for="email">e-mail</label></br>
+                    <input class="fcommonspace" type="text" id="email" name="email" placeholder="e-mail" required/></br>
+                    <label for="dob">Date of Birth</label></br>
+                    <input class="fcommonspace" type="date" id="dob" name="dob" max="2006-12-31" required/></br>
+                    <label for="uname">Username</label></br>
+                    <input class="fcommonspace" type="text" id="uname" name="uname" placeholder="Username" minlength="1" required/></br>
+                    <label for="pwd">Password</label></br>
+                    <input class="fcommonspace" type="password" id="pwd" name="pwd" placeholder="Password" minlength="8" maxlength="16" required/><br/>
+                    <input type="submit" id="lbttn" value="Register"/>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
