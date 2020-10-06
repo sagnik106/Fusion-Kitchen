@@ -9,7 +9,7 @@
     <body>
         <div class="boxaligner">
             <div class='centralbox'>
-                <img src="{{url_for('static', filename='images/logo.png')}}" id="logo">
+                <a href="/"><img src="{{url_for('static', filename='images/logo.png')}}" id="logo"></a>
                 <form name="signup" method="POST">
                     <label for="fname">First Name</label></br>
                     <input class="fcommonspace" type="text" id="fname" name="fname" placeholder="First Name" minlength="1" required/></br>
