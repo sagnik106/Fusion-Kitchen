@@ -1379,3 +1379,16 @@ textarea:focus {
     padding-left: 30px; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+.reviewed{
+  margin: 10px 0 30px 10px;
+}
+
+.reviwedhead{
+  margin: 0;
+}
+
+cite{
+  margin: 0 20px 20px 20px;
+}
