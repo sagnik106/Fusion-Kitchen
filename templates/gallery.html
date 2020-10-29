@@ -35,18 +35,20 @@ li a:hover {
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Gallery</title>
+    <title>Gallery|Fusion Kitchen</title>
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="../static/CSS/style1.css">
+    <link rel='icon' href="{{url_for('static', filename='images/favicon.svg')}}"/>
 
 </head>
 
 <body>
 <p align="center"> <img src="../static/images/logo.png" id="logo"></p>
 <ul class="nav">
-  <li><a class="active" href="/">Home</a></li>
-  <li><a href="/profile">User Profile</a></li>
-  <li><a href="/logout">Logout</a></li>
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="/profile">User Profile</a></li>
+    <li><a href="/gallery">Gallery</a></li>
+    <li><a href="/logout">Logout</a></li>
 </ul>
 <br>
     <!-- ##### Breadcumb Area End ##### -->
@@ -66,57 +68,23 @@ li a:hover {
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <div class="blog-posts-area">
-
+                        {%for i in recipk%}
                         <!-- Single Blog Area -->
                         <div class="single-blog-area mb-80">
                             <!-- Thumbnail -->
                             <div class="blog-thumbnail">
-                                <img src="../static/images/bg-img/bg5.jpg" alt="">
+                                <img src="../static/images/blog-img/{{recip[i]['image']}}" alt="">
                                 <!-- Post Date -->
                                 
                             </div>
                             <!-- Content -->
                             <div class="blog-content">
-                                <a href="#" class="post-title">Vegetarian Cheese Salad</a>
-                                <p>Salad for vegans </p>
-                                <a href="fusion-salad.html" class="btn delicious-btn mt-30">Go to recipe</a>
+                                <a href="#" class="post-title">{{recip[i]["name"]}}</a>
+                                <p>{{recip[i]["description"]}}</p>
+                                <a href="/dish/{{i}}" class="btn delicious-btn mt-30">Go to recipe</a>
                             </div>
                         </div>
-
-                        <!-- Single Blog Area -->
-                        <div class="single-blog-area mb-80">
-                            <!-- Thumbnail -->
-                            <div class="blog-thumbnail">
-                                <img src="../static/images/blog-img/2.jpg" alt="">
-                                <!-- Post Date -->
-                                
-                            </div>
-                            <!-- Content -->
-                            <div class="blog-content">
-                                <a href="fusion-coffee.html" class="post-title">Cold Coffee</a>
-                                
-                                <p>Cold coffee recipe for the hot summers! </p>
-                                <a href="fusion-coffee.html" class="btn delicious-btn mt-30">Go to recipe</a>
-                            </div>
-                        </div>
-
-                        <!-- Single Blog Area -->
-                        <div class="single-blog-area mb-80">
-                            <!-- Thumbnail -->
-                            <div class="blog-thumbnail">
-                                <img src="../static/images/blog-img/4.jpg" alt="">
-                                <!-- Post Date -->
-                                
-                            </div>
-                            <!-- Content -->
-                            <div class="blog-content">
-                                <a href="fusion-cake.html" class="post-title">Extreme chocolate cake</a>
-                                
-                                <p>extreme chocolate cake for birthdays or other special occasions </p>
-                                <a href="fusion-cake.html" class="btn delicious-btn mt-30">Go to recipe</a>
-                            </div>
-                        </div>
-
+                        {%endfor%}
                     </div>
                 </div>
             </div>

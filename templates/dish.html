@@ -34,7 +34,8 @@ li a:hover {
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Chocolate Cake</title>
+    <title>{{recip["name"]}}|Fusion Kitchen</title>
+    <link rel='icon' href="{{url_for('static', filename='images/favicon.svg')}}"/>
 
     <!-- Favicon -->
     <!--<link rel="icon" href="img/core-img/favicon.ico">-->
@@ -48,6 +49,7 @@ li a:hover {
 <ul class="nav">
   <li><a class="active" href="/">Home</a></li>
   <li><a href="/profile">User Profile</a></li>
+  <li><a href="/gallery">Gallery</a></li>
   <li><a href="/logout">Logout</a></li>
 </ul>
 <br>
@@ -56,8 +58,8 @@ li a:hover {
             <div class="row">
                 <div class="col-12">
                     <div class="receipe-slider owl-carousel">
-                        <img src="../static/images/blog-img/4.jpg" alt="">
-                        <iframe width="960" height="415" src="https://www.youtube.com/embed/dsJtgmAhFF4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <img src="../static/images/blog-img/{{recip['image']}}" alt="">
+                        <iframe width="960" height="415" src="{{recip['youtube']}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -70,10 +72,10 @@ li a:hover {
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <div class="receipe-headline my-5">
-                            <h2>Extreme Chocolate Cake</h2>
+                            <h2>{{recip["name"]}}</h2>
                             <div class="receipe-duration">
-                                <h6>Prep: 30 mins</h6>
-                                <h6>Cook: 35 mins</h6>
+                                <h6>Prep: {{recip["prep"]}}</h6>
+                                <h6>Cook: {{recip["cook"]}}</h6>
                             </div>
                         </div>
                     </div>
@@ -95,112 +97,34 @@ li a:hover {
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <!-- Single Preparation Step -->
+                        {%for i in recip["steps"]%}
+                        {%if i!=None%}
                         <div class="single-preparation-step d-flex">
-                            <h4>01.</h4>
-                            <p>Preheat oven to 350 degrees F (175 degrees C). Grease and flour two 9 inch cake pans. </p>
+                            <h4>{{loop.index-1}}.</h4>
+                            <p>{{i}}</p>
                         </div>
-                        <!-- Single Preparation Step -->
-                        <div class="single-preparation-step d-flex">
-                            <h4>02.</h4>
-                            <p>Use the first set of ingredients to make the cake. In a medium bowl, stir together the sugar, flour, cocoa, baking soda, baking powder and salt. Add the eggs, milk, oil and vanilla, mix for 3 minutes with an electric mixer. Stir in the boiling water by hand. Pour evenly into the two prepared pans. </p>
-                        </div>
-                        <!-- Single Preparation Step -->
-                        <div class="single-preparation-step d-flex">
-                            <h4>03.</h4>
-                            <p>Bake for 30 to 35 minutes in the preheated oven, until a toothpick inserted comes out clean. Cool for 10 minutes before removing from pans to cool completely. </p>
-                        </div>
-                        <!-- Single Preparation Step -->
-                        <div class="single-preparation-step d-flex">
-                            <h4>04.</h4>
-                            <p>To make the frosting, use the second set of ingredients. Cream butter until light and fluffy. Stir in the cocoa and confectioners' sugar alternately with the milk and vanilla. Beat to a spreading consistency. </p>
-                        </div>
-                        <div class="single-preparation-step d-flex">
-                            <h4>05.</h4>
-                            <p>Split the layers of cooled cake horizontally, cover the top of each layer with frosting, then stack them onto a serving plate. Frost the outside of the cake. </p>
-                        </div>
+                        {%endif%}
+                        {%endfor%}
                     </div>
 
                     <!-- Ingredients -->
                     <div class="col-12 col-lg-4">
                         <div class="ingredients">
                             <h4>Ingredients</h4>
-
+                            {%for i in recip["ingredients"]%}
+                            {%if i!=None%}
                             <!-- Custom Checkbox -->
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">2 cups white sugar</label>
+                                <label class="custom-control-label" for="customCheck1">{{i}}</label>
                             </div>
+                            {%endif%}
+                            {%endfor%}
 
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                <label class="custom-control-label" for="customCheck2">¾ cup unsweetened cocoa powder  </label>
-                            </div>
-
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                <label class="custom-control-label" for="customCheck3">1 ½ teaspoons baking soda</label>
-                            </div>
-
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                <label class="custom-control-label" for="customCheck4">1 ½ teaspoons baking powder </label>
-                            </div>
-
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                <label class="custom-control-label" for="customCheck5">1 teaspoon salt </label>
-                            </div>
-
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck6">
-                                <label class="custom-control-label" for="customCheck6">2 large eggs </label>
-                            </div>
-
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck7">
-                                <label class="custom-control-label" for="customCheck7">1 cup milk </label>
-                            </div>
-
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                <label class="custom-control-label" for="customCheck8">½ cup vegetable oil  </label>
-                            </div>
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                <label class="custom-control-label" for="customCheck8">2 teaspoons vanilla extract  </label>
-                            </div>
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                <label class="custom-control-label" for="customCheck8">1 cup boiling water  </label>
-                            </div>
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                <label class="custom-control-label" for="customCheck8">¾ cup butter   </label>
-                            </div>
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                <label class="custom-control-label" for="customCheck8">1 ½ cups unsweetened cocoa powder  </label>
-                            </div>
-                            <!-- Custom Checkbox -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                <label class="custom-control-label" for="customCheck8">5 ⅓ cups confectioners' sugar </label>
-                            </div>
                         </div>
                     </div>
                 </div>
-
+                {%if reviews|length!=0%}
                 <div id="reviewed">
                     <h2>Reviews</h2>
                     {%for i in reviews%}
@@ -211,6 +135,7 @@ li a:hover {
                     </div>
                     {%endfor%}
                 </div>
+                {%endif%}
 
                 <div class="row">
                     <div class="col-12">

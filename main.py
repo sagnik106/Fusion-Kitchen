@@ -70,7 +70,8 @@ def logou():
 def gallery():
     try:
         _=session["uname"]
-        return render_template("gallery.html")
+        recip = fb.get('/', 'Dish')
+        return render_template("gallery.html", recip=recip, recipk=recip.keys())
     except:
         return redirect("/")
 
@@ -88,8 +89,14 @@ def dish(name):
         payl["uname"]=session["uname"]
         fb.put('/review/%s/'%(name),'%s'%(payl['subject']), data=payl)
     rev=fb.get('/review/', name)
-    reviews=list(rev.values())
-    return render_template("dish.html", urname=name, reviews=reviews)
+    try:    
+        reviews=list(rev.values())
+    except:
+        reviews=list()
+    recip = fb.get('/Dish/', name)
+    if recip==None:
+        return redirect('/gallery')
+    return render_template("dish.html", urname=name, reviews=reviews, recip=recip)
 
 if __name__=="__main__":
     app.run(debug=True)
