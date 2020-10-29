@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fusion Kitchen</title>
+  <link rel='icon' href="{{url_for('static', filename='images/favicon.svg')}}"/>
+<style>
+.topnav {
+  background-color: #0047ab;
+  overflow: hidden;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  background-color: lightblue;
+  color: black;
+}
+.accordion {
+  background-color: lightblue;
+  color: #444;
+  cursor: pointer;
+  padding: 14px;
+  width: 100%;
+  text-align: center;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  font-size: 20px;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.accordion:hover {
+  background-color: lightblue;
+}
+
+.panel {
+  padding: 0 14px;
+  background-color: #e6f3ff;
+  display: none;
+  overflow: hidden;
+}
+.column {
+  float: left;
+}
+
+.middle, .right {
+  width: 32.5%;
+  text-align: center;
+}
+
+.left {
+  width: 35%;
+}
+#top{
+  text-align: center;
+  padding: 25px;
+  color: white;
+  background-color: #0047ab;
+}
+.textbox {
+  border: none;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0px;
+  cursor: pointer;
+  background-color: lightgrey;
+  color: black;
+}
+#textbox1 {
+    border-radius: 25px;
+    border: 2px solid #e6f3ff;
+    padding: 20px;
+    width: 300px;
+    height: 15px;
+}
+
+.button {
+  border: none;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0px;
+  cursor: pointer;
+  background-color:#0047ab;
+  text-decoration: none;
+  color: #ffffff;
+}
+</style>
+</head>
+<body style="background-color:lightgrey;">
+<div class="topnav">
+  <a href="/">Home</a>
+  <a href="/profile">User Profile</a>
+  <a href="/gallery">Gallery</a>
+  <a href="/saved">Saved Recipes</a></li>
+  <a href="/logout">Logout</a>
+</div>
+<br>
+<img src="../static/images/logo.png" style="width: 30%;" class="center"></img>
+<br>
+<div class="row">
+
+  <div class="column left">
+    <p id="top">CATEGORIES</p>
+    <form>
+    {%for i in sec%}
+    <h4 style="margin: 0; width: inherit;" class="accordion">{{i}}</h4>
+    <div class="panel">
+        <br>
+        {%for j in ingred[i]%}
+        {%if j!=None%}
+        <input type="checkbox" name="dairy" value="{{j}}">{{j}}<br>
+        {%endif%}
+        {%endfor%}
+        <br>
+    </div>
+    {%endfor%}
+  </form>
+  </div>
+
+  <div class="column middle">
+    <p id="top">TYPE THE INGREDIENTS</p>
+    <br>
+    <pre>     <input type="text" name="textbox1" id="textbox1" />     </pre>
+    <br>
+    <input type="submit" name="button" id="button1" onclick="myfunction()" value="ADD Ingredient" class="button"/>
+    <br>
+    <input type="button" onclick="myFunction()" value="← CHOOSE Ingredients" class="button">
+  </div>
+
+  <div class="column right">
+    <form method="POST" action="/search">
+    <p id="top">CHOOSEN INGREDIENTS</p>
+    <br>
+    <input type="text" id="order" class="textbox" readonly="true" name="tb1"/>
+    <br>
+    <input type="text" id="textbox2" class="textbox" readonly="true" name="tb2"/>
+    <br>
+    <input type="submit" class="button" value="SEARCH FOR RECIPE"/>
+    </form>
+    <button class="button" onclick="clearIngredients()">CLEAR INGREDIENTS</button>
+  </div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+function clearIngredients(){
+  document.getElementById("order").value="";
+  document.getElementById("textbox2").value="";
+}
+
+function myfunction() {
+  var first = document.getElementById("textbox1").value;
+  var second = document.getElementById('textbox2');
+  var text = "";
+  text = text + second.value + first + " ";
+  second.value = text.toUpperCase();
+}
+
+function myFunction() {
+  var ingredient = document.forms[0];
+  var txt = "";
+  var i;
+  for (i = 0; i < ingredient.length; i++) {
+    if (ingredient[i].checked) {
+      txt = txt + ingredient[i].value + ", ";
+    }
+  }
+  document.getElementById("order").value = txt.toUpperCase();
+}
+</script>
+</body>
+</html>

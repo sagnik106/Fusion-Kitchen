@@ -50,6 +50,7 @@ li a:hover {
   <li><a class="active" href="/">Home</a></li>
   <li><a href="/profile">User Profile</a></li>
   <li><a href="/gallery">Gallery</a></li>
+  <li><a href="/saved">Saved recipes</a></li>
   <li><a href="/logout">Logout</a></li>
 </ul>
 <br>
@@ -89,7 +90,7 @@ li a:hover {
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star-o" aria-hidden="true"></i>
                             </div>
-                            <a href="#" class="btn delicious-btn">Save Recipe</a>
+                            <a href="/save/{{urname}}" class="btn delicious-btn">Save Recipe</a>
                         </div>
                     </div>
                 </div>
@@ -115,8 +116,8 @@ li a:hover {
                             {%if i!=None%}
                             <!-- Custom Checkbox -->
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">{{i}}</label>
+                                <input type="checkbox" class="custom-control-input" id="customCheck{{loop.index-1}}">
+                                <label class="custom-control-label" for="customCheck{{loop.index-1}}">{{i}}</label>
                             </div>
                             {%endif%}
                             {%endfor%}
