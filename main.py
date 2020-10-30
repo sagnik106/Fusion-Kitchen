@@ -83,7 +83,7 @@ def searc():
         s=[i for i in s if len(i)!=0]
         for i in range(len(a_ingred)):
             for j in s:
-                if a_ingred[i].find(j)!=-1:
+                if a_ingred[i].find(j)!=-1 and list(recip.keys())[i] not in f_dish:
                     f_dish.append(list(recip.keys())[i])
         return render_template("ingredsearch.html", recipk=f_dish, recip=recip)
     return redirect("/")
