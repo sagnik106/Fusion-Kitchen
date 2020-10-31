@@ -95,7 +95,7 @@ def gallery():
     except:
         return redirect("/")
     recip = fb.get('/', 'Dish')
-    return render_template("gallery.html", recip=recip, recipk=recip.keys())
+    return render_template("gallery.html", recip=recip, recipk=recip.keys(), gall="Gallery")
 
 @app.route('/dish/<name>', methods=["POST", "GET"])
 def dish(name):
@@ -140,7 +140,7 @@ def savedrecipes():
     except:
         return redirect('/')
     recip = fb.get('/', 'Dish')
-    return render_template("gallery.html", recip=recip, recipk=us)
+    return render_template("gallery.html", recip=recip, recipk=us, gall="Saved Recipes")
     
 
 if __name__=="__main__":
